@@ -8,14 +8,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import fr.adaming.formation.model.Enclos;
+import fr.adaming.formation.model.Zone;
 import fr.adaming.formation.repository.IEnclosRepository;
 import fr.adaming.formation.repository.IZoneRepository;
+
 @Service
-public class EnclosService implements IEnclosService{
-	
+public class EnclosService implements IEnclosService {
+
 	@Autowired
 	IEnclosRepository enclosRepo;
-	
+
 	@Autowired
 	IZoneRepository zoneRepo;
 
@@ -33,14 +35,14 @@ public class EnclosService implements IEnclosService{
 
 	@Override
 	public Enclos getEnclosById(long idEnclos) {
-		Enclos enclos= new Enclos();
-		Optional<Enclos> enclosOpt=enclosRepo.findById(idEnclos);
-		
-		if(enclosOpt.isPresent()) {
-			enclos=enclosOpt.get();
-			System.err.println("===="+enclos+"====");
+		Enclos enclos = new Enclos();
+		Optional<Enclos> enclosOpt = enclosRepo.findById(idEnclos);
+
+		if (enclosOpt.isPresent()) {
+			enclos = enclosOpt.get();
+			System.err.println("====" + enclos + "====");
 			return enclos;
-		}else {
+		} else {
 			System.err.println("====Enclos introuvable====");
 			return enclos;
 		}
@@ -55,13 +57,28 @@ public class EnclosService implements IEnclosService{
 	@Override
 	public void deleteEnclos(long idEnclos) {
 		enclosRepo.deleteById(idEnclos);
-		
+
 	}
 
 	@Override
-	public void affecterEnclosZone(long idEnclos, long idZone) {
-		// TODO Auto-generated method stub
+	public void affecterZoneEnclos(long idZone, long idEnclos) {
+		Optional<Zone> zoneOpt = zoneRepo.findById(idZone);
+		Zone zone = new Zone();
+
+		Optional<Enclos> enclosOpt = enclosRepo.findById(idEnclos);
+		Enclos enclos = new Enclos();
+
+		if (enclosOpt.isPresent() && zoneOpt.isPresent()) {
+			enclos = enclosOpt.get();
+			zone = zoneOpt.get();
+			enclos.setZone(zone);
+			enclosRepo.save(enclos);
+			System.err.println("=====Affectation réussie=====");
+		} else {
+			System.err.println("=====Echec de l'affectation=====");
+		}
 		
+
 	}
 
 }

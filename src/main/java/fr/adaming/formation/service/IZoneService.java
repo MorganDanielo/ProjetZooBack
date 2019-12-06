@@ -12,7 +12,7 @@ public interface IZoneService {
 
 	public Zone getZoneById(long idZone);
 
-	public List<Zone> getAll();
+	public List<Zone> getAllZone();
 
 	public void deleteZone(long idZone);
 

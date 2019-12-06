@@ -10,14 +10,14 @@ public interface IAnimalService {
 
 	public Animal updateAnimal(Animal animal);
 
-	public Animal getAnimalById(long idAnimal);
+	public Animal getAnimalById(long idAni);
 
 	public List<Animal> getAllAnimal();
 
-	public void deleteAnimal(long idAnimal);
+	public void deleteAnimal(long idAni);
 
-	public void affecterNourritureAnimal(long idNou, long idAnimal);
+	public void affecterNourritureAnimal(long idNou, long idAni);
 
-	public void affecterAnimalEnclos(long idAni, long idEnclos);
+	public void affecterEnclosAnimal(long idEnclos,long idAni);
 
 }

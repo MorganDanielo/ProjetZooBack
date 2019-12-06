@@ -16,7 +16,7 @@ public interface ITacheService {
 
 	public void deleteTache(long idTache);
 
-	public Tache affecterEtatTache(long idEtat, long idTache);
+	public void affecterEtatTache(long idEtat, long idTache);
 
 	public void affecterStaffTache(long idStaff,long idTache);
 

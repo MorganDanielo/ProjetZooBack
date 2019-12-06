@@ -16,6 +16,6 @@ public interface IEnclosService {
 
 	public void deleteEnclos(long idEnclos);
 
-	public void affecterEnclosZone(long idEnclos, long idZone);
+	public void affecterZoneEnclos(long idZone, long idEnclos);
 
 }

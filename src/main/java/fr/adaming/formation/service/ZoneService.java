@@ -44,7 +44,7 @@ public class ZoneService implements IZoneService {
 	}
 
 	@Override
-	public List<Zone> getAll() {
+	public List<Zone> getAllZone() {
 		// TODO Auto-generated method stub
 		return zoneRepo.findAll(Sort.by("idZone"));
 	}
