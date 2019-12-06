@@ -16,8 +16,7 @@ public class Enclos {
 	//Déclaration des attributs
 	private long idEnclos;
 	private int capacite;
-	
-	private Animal animal;
+	private Zone zone;
 	
 	
 	//Déclaration du constructeur vide
@@ -26,18 +25,18 @@ public class Enclos {
 	}
 	
 	//Déclaration du constructeur sans id
-	public Enclos(int capacite, Animal animal) {
+	public Enclos(int capacite, Zone zone) {
 		super();
 		this.capacite = capacite;
-		this.animal = animal;
+		this.zone = zone;
 	}
 
 	//Déclaration du constructeur avec id
-	public Enclos(long idEnclos, int capacite, Animal animal) {
+	public Enclos(long idEnclos, int capacite,  Zone zone) {
 		super();
 		this.idEnclos = idEnclos;
 		this.capacite = capacite;
-		this.animal = animal;
+		this.zone = zone;
 	}
 
 	//Déclaration des getters et des setters
@@ -60,20 +59,22 @@ public class Enclos {
 		this.capacite = capacite;
 	}
 	
+	
 	@ManyToOne
-	@JoinColumn(name = "id_animal")
-	public Animal getAnimal() {
-		return animal;
+	@JoinColumn(name = "id_zone")
+	public Zone getZone() {
+		return zone;
 	}
 
-	public void setAnimal(Animal animal) {
-		this.animal = animal;
+	public void setZone(Zone zone) {
+		this.zone = zone;
 	}
 
 	//Redéfinition de la méthode toString	
 	@Override
 	public String toString() {
-		return "Enclos [idEnclos=" + idEnclos + ", capacite=" + capacite + ", animal=" + animal + "]";
+		return "Enclos [idEnclos=" + idEnclos + ", capacite=" + capacite + " zone=" + zone
+				+ "]";
 	}
 	
 	

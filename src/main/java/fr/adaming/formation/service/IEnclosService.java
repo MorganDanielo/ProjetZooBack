@@ -12,9 +12,10 @@ public interface IEnclosService {
 
 	public Enclos getEnclosById(long idEnclos);
 
-	public List<Enclos> getAll();
+	public List<Enclos> getAllEnclos();
 
 	public void deleteEnclos(long idEnclos);
 
-	public void affecterAnimalEnclos(long idAni, long idEnclos);
+	public void affecterEnclosZone(long idEnclos, long idZone);
+
 }

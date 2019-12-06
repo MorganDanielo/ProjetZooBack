@@ -10,10 +10,10 @@ public interface INourritureService {
 
 	public Nourriture updateNourriture(Nourriture nourriture);
 
-	public Nourriture getNourritureById(long idNourriture);
+	public Nourriture getNourritureById(long idNou);
 
-	public List<Nourriture> getAll();
+	public List<Nourriture> getAllNourriture();
 
-	public void deleteNourriture(long idNourriture);
+	public void deleteNourriture(long idNou);
 
 }

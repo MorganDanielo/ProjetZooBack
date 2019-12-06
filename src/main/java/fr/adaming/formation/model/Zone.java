@@ -5,9 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,27 +16,24 @@ public class Zone {
 	private long idZone;
 	private String nom;
 	
-	private Enclos enclos;
-	
+		
 	//Déclaration du constructeur vide
 	public Zone() {
 		super();
 	}
 
 	//Déclaration du constructeur sans id
-	public Zone(String nom, Enclos enclos) {
+	public Zone(String nom) {
 		super();
 		this.nom = nom;
-		this.enclos = enclos;
 		
 	}
 
 	//Déclaration du constructeur avec id
-	public Zone(long idZone, String nom, Enclos enclos) {
+	public Zone(long idZone, String nom) {
 		super();
 		this.idZone = idZone;
 		this.nom = nom;
-		this.enclos = enclos;
 		
 	}
 
@@ -62,21 +57,11 @@ public class Zone {
 		this.nom = nom;
 	}
 	
-	@OneToMany
-	@JoinColumn(name = "id_enclos")
-	public Enclos getEnclos() {
-		return enclos;
-	}
-
-	public void setEnclos(Enclos enclos) {
-		this.enclos = enclos;
-	}
-	
 
 	//Redéfinition de la méthode toString	
 	@Override
 	public String toString() {
-		return "Zone [idZone=" + idZone + ", nom=" + nom + ", enclos=" + enclos + "]";
+		return "Zone [idZone=" + idZone + ", nom=" + nom + "]";
 	}
 	
 	

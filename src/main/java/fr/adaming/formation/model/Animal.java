@@ -18,6 +18,7 @@ public class Animal {
 	private String espece;
 	
 	private Nourriture nourriture;
+	private Enclos enclos;
 	
 	//Déclaration du constructeur vide
 	public Animal() {
@@ -25,18 +26,20 @@ public class Animal {
 	}
 
 	//Déclaration dun constructeur sans id
-	public Animal(String espece, Nourriture nourriture) {
+	public Animal(String espece, Nourriture nourriture, Enclos enclos) {
 		super();
 		this.espece = espece;
 		this.nourriture = nourriture;
+		this.enclos = enclos;
 	}
 
 	//Déclaration du constructeur avec id
-	public Animal(long idAni, String espece, Nourriture nourriture) {
+	public Animal(long idAni, String espece, Nourriture nourriture, Enclos enclos) {
 		super();
 		this.idAni = idAni;
 		this.espece = espece;
 		this.nourriture = nourriture;
+		this.enclos = enclos;
 	}
 
 	//Déclaration des getters et des setters
@@ -68,11 +71,25 @@ public class Animal {
 	public void setNourriture(Nourriture nourriture) {
 		this.nourriture = nourriture;
 	}
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "id_enclos")
+	public Enclos getEnclos() {
+		return enclos;
+	}
+
+	public void setEnclos(Enclos enclos) {
+		this.enclos = enclos;
+	}
 
 	//Redéfinition de la méthode toString
+	
+	
 	@Override
 	public String toString() {
-		return "Animal [idAni=" + idAni + ", espece=" + espece + ", nourriture=" + nourriture + "]";
+		return "Animal [idAni=" + idAni + ", espece=" + espece + ", nourriture=" + nourriture + ", enclos=" + enclos
+				+ "]";
 	}
 	
 	

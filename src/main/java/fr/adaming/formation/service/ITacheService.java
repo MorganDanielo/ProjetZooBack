@@ -12,10 +12,12 @@ public interface ITacheService {
 
 	public Tache getTacheById(long idTache);
 
-	public List<Tache> getAll();
+	public List<Tache> getAllTache();
 
 	public void deleteTache(long idTache);
 
-	public void affecterEtatTache(long idEtat, long idTache);
+	public Tache affecterEtatTache(long idEtat, long idTache);
+
+	public void affecterStaffTache(long idStaff,long idTache);
 
 }

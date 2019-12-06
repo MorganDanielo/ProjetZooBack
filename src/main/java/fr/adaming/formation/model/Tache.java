@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +23,7 @@ public class Tache {
 	private double duree;
 	
 	private Etat etat;
+	private Staff staff;
 
 	//Déclaration du constructeur vide
 	public Tache() {
@@ -29,22 +31,24 @@ public class Tache {
 	}
 
 	//Déclaration du constructeur sans id
-	public Tache(String intitule, Date date, double duree, Etat etat) {
+	public Tache(String intitule, Date date, double duree, Etat etat, Staff staff) {
 		super();
 		this.intitule = intitule;
 		this.date = date;
 		this.duree = duree;
 		this.etat = etat;
+		this.staff = staff;
 	}
 
 	//Déclaration du constructeur avec id
-	public Tache(long idTache, String intitule, Date date, double duree, Etat etat) {
+	public Tache(long idTache, String intitule, Date date, double duree, Etat etat, Staff staff) {
 		super();
 		this.idTache = idTache;
 		this.intitule = intitule;
 		this.date = date;
 		this.duree = duree;
 		this.etat = etat;
+		this.staff = staff;
 	}
 
 	//Déclaration des getters et des setters
@@ -92,12 +96,22 @@ public class Tache {
 	public void setEtat(Etat etat) {
 		this.etat = etat;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name="id_staff")
+	public Staff getStaff() {
+		return staff;
+	}
 
-	//Redéfinition de la méthode toString
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
+	//Redéfinition de la méthode toString	
 	@Override
 	public String toString() {
 		return "Tache [idTache=" + idTache + ", intitule=" + intitule + ", date=" + date + ", duree=" + duree
-				+ ", etat=" + etat + "]";
+				+ ", etat=" + etat + ", staff=" + staff + "]";
 	}
 	
 	

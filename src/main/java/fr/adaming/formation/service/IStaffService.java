@@ -12,14 +12,18 @@ public interface IStaffService {
 
 	public Staff getStaffById(long idStaff);
 
-	public List<Staff> getAll();
+	public List<Staff> getAllStaff();
 
 	public void deleteStaff(long idStaff);
-
-	public void affecterTacheStaff(long idTache, long idStaff);
 
 	public void affecterRoleStaff(long idRole, long idStaff);
 
 	public void affecterZoneStaff(long idZone, long idStaff);
+
+	public List<Staff> findByLogin(String login);
+
+	public boolean existsStaffByLogin(String login);
+
+	public Staff findByLoginAndPassword(String login, String password);
 
 }

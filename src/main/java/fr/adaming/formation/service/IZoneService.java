@@ -16,6 +16,6 @@ public interface IZoneService {
 
 	public void deleteZone(long idZone);
 
-	public void affecterEnclosZone(long idEnclos, long idZone);
+	
 
 }

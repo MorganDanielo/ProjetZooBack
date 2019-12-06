@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,7 +22,6 @@ public class Staff {
 	private String password;
 	
 	private Role role;
-	private Tache tache;
 	private Zone zone;
 	
 	//Déclaration du constructeur vide
@@ -32,19 +30,18 @@ public class Staff {
 	}
 
 	//Déclaration du constructeur sans id
-	public Staff(String nom, String prenom, String login, String password, Role role, Tache tache, Zone zone) {
+	public Staff(String nom, String prenom, String login, String password, Role role, Zone zone) {
 		super();
 		this.nom = nom;
 		this.prenom = prenom;
 		this.login = login;
 		this.password = password;
 		this.role = role;
-		this.tache = tache;
 		this.zone = zone;
 	}
 
 	//Déclaration du constructeur avec id
-	public Staff(long idStaff, String nom, String prenom, String login, String password, Role role, Tache tache,
+	public Staff(long idStaff, String nom, String prenom, String login, String password, Role role,
 			Zone zone) {
 		super();
 		this.idStaff = idStaff;
@@ -53,7 +50,6 @@ public class Staff {
 		this.login = login;
 		this.password = password;
 		this.role = role;
-		this.tache = tache;
 		this.zone = zone;
 	}
 
@@ -111,16 +107,7 @@ public class Staff {
 		this.role = role;
 	}
 
-	@OneToMany
-	@JoinColumn(name = "id_tache")
-	public Tache getTache() {
-		return tache;
-	}
-
-	public void setTache(Tache tache) {
-		this.tache = tache;
-	}
-	
+		
 	@ManyToOne
 	@JoinColumn(name = "id_zone")
 	public Zone getZone() {
@@ -135,7 +122,7 @@ public class Staff {
 	@Override
 	public String toString() {
 		return "Staff [idStaff=" + idStaff + ", nom=" + nom + ", prenom=" + prenom + ", login=" + login + ", password="
-				+ password + ", role=" + role + ", tache=" + tache + ", zone=" + zone + "]";
+				+ password + ", role=" + role + ", zone=" + zone + "]";
 	}
 	
 	
