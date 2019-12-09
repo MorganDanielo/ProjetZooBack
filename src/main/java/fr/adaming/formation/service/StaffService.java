@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import fr.adaming.formation.model.Role;
 import fr.adaming.formation.model.Staff;
@@ -11,7 +12,7 @@ import fr.adaming.formation.model.Zone;
 import fr.adaming.formation.repository.IRoleRepository;
 import fr.adaming.formation.repository.IStaffRepository;
 import fr.adaming.formation.repository.IZoneRepository;
-
+@Service
 public class StaffService implements IStaffService{
 	
 	@Autowired

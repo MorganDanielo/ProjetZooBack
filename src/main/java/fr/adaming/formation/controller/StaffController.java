@@ -14,14 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.adaming.formation.model.Staff;
+import fr.adaming.formation.model.Token;
 import fr.adaming.formation.service.IRoleService;
 import fr.adaming.formation.service.IStaffService;
 import fr.adaming.formation.service.IZoneService;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import java.security.Key;
 
 @RestController
 @RequestMapping("staff")
 @CrossOrigin(origins = "http://localhost:4200")
 public class StaffController {
+	
+	Key cle=Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
 	@Autowired
 	IStaffService staffService;
@@ -46,32 +53,54 @@ public class StaffController {
 	public Staff ajoutStaff(@RequestBody Staff staff) {
 		return staffService.saveStaff(staff);
 	}
+
 	@DeleteMapping("/{idStaff}")
 	public boolean supprimerStaff(@PathVariable long idStaff) {
 		try {
 			staffService.deleteStaff(idStaff);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return false;
 		}
 		return true;
 	}
+
 	@PutMapping("/{idStaff}")
 	public Staff modifierStaff(@RequestBody Staff staff, @PathVariable long idStaff) {
 		staff.setIdStaff(idStaff);
 		return staffService.saveStaff(staff);
 	}
-	
+
 	@PutMapping("affecterRole/{idRole}/{idStaff}")
 	public void affecterRole(@RequestBody Staff staff, @PathVariable long idRole, @PathVariable long idStaff) {
 		staff.setIdStaff(idStaff);
 		staff.setRole(roleService.getRoleById(idRole));
 		staffService.affecterRoleStaff(idRole, idStaff);
 	}
-	
-	@PutMapping("affecterRole/{idZone}/{idStaff}")
+
+	@PutMapping("affecterZone/{idZone}/{idStaff}")
 	public void affecterZone(@RequestBody Staff staff, @PathVariable long idZone, @PathVariable long idStaff) {
 		staff.setIdStaff(idStaff);
 		staff.setZone(zoneService.getZoneById(idZone));
 		staffService.affecterZoneStaff(idZone, idStaff);
+	}
+
+	@GetMapping("exist/{login}")
+	public boolean existsStaffByLogin(@PathVariable String login) {
+		return staffService.existsStaffByLogin(login);
+	}
+	@PostMapping("/login")
+	public Token findByLoginAndPassword(@RequestBody Staff staff) {
+		Staff s=staffService.findByLoginAndPassword(staff.getLogin(), staff.getPassword());
+		if(s.getIdStaff()!=0) {
+			String token;
+			token=Jwts.builder()
+					.setSubject(s.getLogin())
+					.signWith(cle)
+					.compact();
+			Token t = new Token();
+			t.setToken(token);
+			return t;
+		}
+		return null;
 	}
 }

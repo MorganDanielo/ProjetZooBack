@@ -69,10 +69,10 @@ public class TacheController {
 		tache.setEtat(etatService.getEtatById(idEtat));
 		tacheService.affecterEtatTache(idEtat, idTache);		
 	}
-	@PutMapping("affecterEtat/{idStaff}/{idTache}")
+	@PutMapping("affecterStaff/{idStaff}/{idTache}")
 	public void affecterStaff (@RequestBody Tache tache, @PathVariable long idStaff,@PathVariable long idTache) {
 		tache.setIdTache(idTache);
 		tache.setStaff(staffService.getStaffById(idStaff));
-		tacheService.affecterEtatTache(idStaff, idTache);		
+		tacheService.affecterStaffTache(idStaff, idTache);		
 	}
 }
