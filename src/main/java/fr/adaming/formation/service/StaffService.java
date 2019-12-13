@@ -1,5 +1,6 @@
 package fr.adaming.formation.service;
 
+import java.security.Key;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,12 +9,18 @@ import org.springframework.stereotype.Service;
 
 import fr.adaming.formation.model.Role;
 import fr.adaming.formation.model.Staff;
+import fr.adaming.formation.model.Token;
 import fr.adaming.formation.model.Zone;
 import fr.adaming.formation.repository.IRoleRepository;
 import fr.adaming.formation.repository.IStaffRepository;
 import fr.adaming.formation.repository.IZoneRepository;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 @Service
 public class StaffService implements IStaffService{
+	
+	Key cle=Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	
 	@Autowired
 	IStaffRepository staffRepo;
@@ -113,14 +120,20 @@ public class StaffService implements IStaffService{
 	}
 
 	@Override
-	public Staff findByLoginAndPassword(String login, String password) {
+	public Token findByLoginAndPassword(String login, String password) {
 		Staff staff=staffRepo.findByLoginAndPassword(login, password);
 		if(staff!=null) {
-			staff.setPassword("");
-			return staff;
-		}else {
-			return new Staff();
-		}
+				String token;
+				token=Jwts.builder()
+						.claim("user", staff)
+						.signWith(cle)
+						.compact();
+				Token t = new Token();
+				t.setToken(token);
+				return t;
+			}
+			return null;
+			
 	}
 
 }

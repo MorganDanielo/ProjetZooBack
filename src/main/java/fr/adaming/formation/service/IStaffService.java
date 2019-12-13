@@ -3,6 +3,7 @@ package fr.adaming.formation.service;
 import java.util.List;
 
 import fr.adaming.formation.model.Staff;
+import fr.adaming.formation.model.Token;
 
 public interface IStaffService {
 
@@ -24,6 +25,6 @@ public interface IStaffService {
 
 	public boolean existsStaffByLogin(String login);
 
-	public Staff findByLoginAndPassword(String login, String password);
+	public Token findByLoginAndPassword(String login, String password);
 
 }

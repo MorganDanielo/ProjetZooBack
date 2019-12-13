@@ -28,7 +28,7 @@ import java.security.Key;
 @CrossOrigin(origins = "http://localhost:4200")
 public class StaffController {
 	
-	Key cle=Keys.secretKeyFor(SignatureAlgorithm.HS256);
+	
 
 	@Autowired
 	IStaffService staffService;
@@ -90,17 +90,7 @@ public class StaffController {
 	}
 	@PostMapping("/login")
 	public Token findByLoginAndPassword(@RequestBody Staff staff) {
-		Staff s=staffService.findByLoginAndPassword(staff.getLogin(), staff.getPassword());
-		if(s.getIdStaff()!=0) {
-			String token;
-			token=Jwts.builder()
-					.setSubject(s.getLogin())
-					.signWith(cle)
-					.compact();
-			Token t = new Token();
-			t.setToken(token);
-			return t;
-		}
-		return null;
+		return staffService.findByLoginAndPassword(staff.getLogin(), staff.getPassword());
+		
 	}
 }
