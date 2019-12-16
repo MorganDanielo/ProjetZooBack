@@ -2,6 +2,7 @@ package fr.adaming.formation.service;
 
 import java.util.List;
 
+import fr.adaming.formation.model.Staff;
 import fr.adaming.formation.model.Tache;
 
 public interface ITacheService {
@@ -19,5 +20,7 @@ public interface ITacheService {
 	public void affecterEtatTache(long idEtat, long idTache);
 
 	public void affecterStaffTache(long idStaff,long idTache);
+	
+	public List<Tache> getTacheByIdStaff(long idStaff);
 
 }

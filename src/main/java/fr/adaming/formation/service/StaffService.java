@@ -123,6 +123,7 @@ public class StaffService implements IStaffService{
 	public Token findByLoginAndPassword(String login, String password) {
 		Staff staff=staffRepo.findByLoginAndPassword(login, password);
 		if(staff!=null) {
+			staff.setPassword("");
 				String token;
 				token=Jwts.builder()
 						.claim("user", staff)

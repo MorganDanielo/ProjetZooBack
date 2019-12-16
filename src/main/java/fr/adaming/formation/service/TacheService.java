@@ -102,4 +102,14 @@ public class TacheService implements ITacheService {
 		}
 	}
 
+	@Override
+	public List<Tache> getTacheByIdStaff(long idStaff) {
+		Staff staff = new Staff();
+		staff.setIdStaff(idStaff);
+		List<Tache> tache = tacheRepo.getTacheByStaff(staff);
+		return tache;
+	}
+
+	
+
 }

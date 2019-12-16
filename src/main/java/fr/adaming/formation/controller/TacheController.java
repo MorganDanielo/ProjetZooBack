@@ -75,4 +75,9 @@ public class TacheController {
 		tache.setStaff(staffService.getStaffById(idStaff));
 		tacheService.affecterStaffTache(idStaff, idTache);		
 	}
+	
+	@GetMapping("staff/{idStaff}")
+	public List<Tache> afficherTacheParStaffer(@PathVariable long idStaff) {
+		return tacheService.getTacheByIdStaff(idStaff);
+	}
 }
